@@ -1,0 +1,22 @@
+<ol class="breadcrumb">
+    <li><a href="{:url('/user')}">个人中心</a></li>
+    <li class="active">点赞列表</li>
+</ol>
+<empty name="list">
+    暂时没有点赞。
+    <else/>
+    <div class="row">
+        <volist name="list" id="item">
+            <div class="col-md-3 media">
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="{:url('index/post/show',['id'=>$item['post_id']])}" target="_blank">{$item.post.title}</a></h4>
+                    <p>
+                        {$item.user.username}
+                        {$item.created_at}
+                    </p>
+                </div>
+            </div>
+        </volist>
+    </div>
+    {$page}
+</empty>

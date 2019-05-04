@@ -1,0 +1,20 @@
+<ol class="breadcrumb">
+    <li class="active">首页</li>
+</ol>
+<volist name="list" id="item">
+    <div class="media">
+        <div class="media-body">
+            <h4 class="media-heading">
+                <a href="{:url('post/show',['id'=>$item['post_id']])}">{$item.title}</a>
+            </h4>
+            <p>
+                <small>分类：<a href="{:url('',['category_id'=>$item['category_id']])}">{$item.category.name}</a></small>
+                <small>作者：{$item.user.username}</small>
+                <small>发表时间：{$item.created_at}</small>
+                <small><i class="glyphicon glyphicon-heart"></i>({$item.praise_count})</small>
+                <small><i class="glyphicon glyphicon-comment"></i>({$item.comment_count})</small>
+            </p>
+        </div>
+    </div>
+</volist>
+{$page}

@@ -1,0 +1,52 @@
+<div class="post-show">
+    <ol class="breadcrumb">
+        <li><a href="{:url('/')}">首页</a></li>
+        <li class="active">文章详情</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading">文章内容</div>
+        <div class="panel-body">
+            <h1>{$post.title}</h1>
+            <p>
+                <small>分类：<a href="{:url('',['category_id'=>$post['category_id']])}">{$post.category.name}</a></small>
+                <small>作者：{$post.user.username}</small>
+                <small>发表时间：{$post.created_at}</small>
+                <small>
+                    <a href="{:url('post/praise',['id'=>$post['post_id']])}"><i class="glyphicon glyphicon-heart"></i>({$post.praise_count})</a>
+                </small>
+                <small><i class="glyphicon glyphicon-comment"></i>({$post.comment_count})</small>
+            </p>
+            <p>{$post.content}</p>
+        </div>
+    </div>
+    <!--评论-->
+    <div class="panel panel-default">
+        <div class="panel-heading">评论</div>
+        <div class="panel-body">
+            <empty name="Think.session.user">
+                <a href="{$login_url}">登录</a>后可以评论文章。
+                <else/>
+                <form action="{:url('post/comment',['id'=>$post['post_id']])}" method="post" class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <textarea placeholder="评论内容" name="content" class="form-control" required rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-default">评论</button>
+                        </div>
+                    </div>
+                </form>
+                <volist name="comment_list" id="comment">
+                    <div class="media">
+                        <div class="media-body">
+                            <p>{$comment.user.username} {$comment.created_at}</p>
+                            <p>{$comment.content}</p>
+                        </div>
+                    </div>
+                </volist>
+            </empty>
+        </div>
+    </div>
+</div>

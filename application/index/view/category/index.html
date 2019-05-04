@@ -1,0 +1,18 @@
+<ol class="breadcrumb">
+    <li><a href="{:url('/')}">首页</a></li>
+    <li class="active">分类列表</li>
+</ol>
+<volist name="list" id="item">
+    <div class="media">
+        <div class="media-body">
+            <h4 class="media-heading">
+                <a href="{:url('index/index',['category_id'=>$item['category_id']])}">{$item.name}</a>
+            </h4>
+            <p>
+                <small>作者：{$item.user.username}</small>
+                <small>文章数：{$item.posts}</small>
+            </p>
+        </div>
+    </div>
+</volist>
+{$page}

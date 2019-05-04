@@ -1,0 +1,29 @@
+<ol class="breadcrumb">
+    <li><a href="{:url('/user')}">个人中心</a></li>
+    <li class="active">修改密码</li>
+</ol>
+<form action="{:url('do_changepwd')}" class="form-horizontal" method="post">
+    <div class="form-group">
+        <label for="old_pwd" class="control-label col-md-1">当前密码</label>
+        <div class="col-md-4">
+            <input type="password" id="old_pwd" name="old_pwd" required class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="new_pwd" class="control-label col-md-1">新密码</label>
+        <div class="col-md-4">
+            <input type="password" id="new_pwd" name="new_pwd" required class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="new_pwd_confirm" class="control-label col-md-1">确认密码</label>
+        <div class="col-md-4">
+            <input type="password" id="new_pwd_confirm" name="new_pwd_confirm" required class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4 col-md-offset-1">
+            <button type="submit" class="btn btn-primary">确认修改</button>
+        </div>
+    </div>
+</form>

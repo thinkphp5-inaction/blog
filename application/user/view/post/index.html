@@ -1,0 +1,55 @@
+<ol class="breadcrumb">
+    <li><a href="{:url('/user')}">个人中心</a></li>
+    <li class="active">文章列表</li>
+</ol>
+<p>
+    <a href="{:url('post/publish')}" class="btn btn-primary">发表文章</a>
+</p>
+<empty name="list">
+    <p>暂时没有文章。</p>
+    <else/>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <tr>
+                <td>ID</td>
+                <td>标题</td>
+                <td>分类</td>
+                <td>状态</td>
+                <td>置顶</td>
+                <td>排序</td>
+                <td>操作</td>
+            </tr>
+            <volist name="list" id="item">
+                <tr>
+                    <td>{$item.post_id}</td>
+                    <td><a href="{:url('index/post/show',['id'=>$item['post_id']])}">{$item.title}</a></td>
+                    <td>{$item.category.name}</td>
+                    <td>
+                        <eq name="item.status" value="1">
+                            <span class="label label-default">草稿</span>
+                        </eq>
+                        <eq name="item.status" value="2">
+                            <span class="label label-success">显示</span>
+                        </eq>
+                        <eq name="item.status" value="3">
+                            <span class="label label-default">隐藏</span>
+                        </eq>
+                    </td>
+                    <td>
+                        <eq name="item.top" value="1">
+                            <span class="label label-success">是</span>
+                            <else/>
+                            <span class="label label-default">否</span>
+                        </eq>
+                    </td>
+                    <td>{$item.sort}</td>
+                    <td>
+                        <a href="{:url('post/update',['id'=>$item['post_id']])}">编辑</a>
+                        <a href="{:url('post/delete',['id'=>$item['post_id']])}" onclick="return confirm('确定删除吗?')">删除</a>
+                    </td>
+                </tr>
+            </volist>
+        </table>
+    </div>
+    {$list->render()}
+</empty>

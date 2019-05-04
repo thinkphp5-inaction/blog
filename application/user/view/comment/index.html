@@ -1,0 +1,34 @@
+<ol class="breadcrumb">
+    <li><a href="{:url('/user')}">个人中心</a></li>
+    <li class="active">评论列表</li>
+</ol>
+<empty name="list">
+    暂时没有评论。
+    <else/>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <tr>
+                <td>ID</td>
+                <td>内容</td>
+                <td>时间</td>
+                <td>用户</td>
+                <td>文章</td>
+                <td>操作</td>
+            </tr>
+            <volist name="list" id="item">
+                <tr>
+                    <td>{$item.comment_id}</td>
+                    <td>{$item.content}</td>
+                    <td>{$item.created_at}</td>
+                    <td>{$item.user.username}</td>
+                    <td><a href="{:url('index/post/show',['id'=>$item['post_id']])}" target="_blank">{$item.post.title}</a></td>
+                    <td>
+                        <a href="{:url('delete',['comment_id'=>$item['comment_id']])}" onclick="return confirm('确定删除吗?')">删除</a>
+                    </td>
+                </tr>
+            </volist>
+        </table>
+    </div>
+    {$page}
+</empty>

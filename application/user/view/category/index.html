@@ -1,0 +1,40 @@
+<ol class="breadcrumb">
+    <li><a href="{:url('/user')}">个人中心</a></li>
+    <li class="active">分类列表</li>
+</ol>
+<p>
+    <a href="{:url('category/add')}" class="btn btn-primary">添加分类</a>
+</p>
+
+<empty name="list">
+    暂时没有分类。
+    <else/>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td>ID</td>
+                <td>分类名</td>
+                <td>状态</td>
+                <td>文章数</td>
+                <td>操作</td>
+            </tr>
+            <volist name="list" id="item">
+                <tr>
+                    <td>{$item.category_id}</td>
+                    <td><a href="{:url('category/update', ['id'=>$item['category_id']])}">{$item.name}</a></td>
+                    <td>
+                        <eq name="item.status" value="1">
+                            <span class="label label-success">显示</span>
+                            <else/>
+                            <span class="label label-default">隐藏</span>
+                        </eq>
+                    </td>
+                    <td>{$item.posts}</td>
+                    <td>
+                        <a onclick="confirm('确定删除吗?')" href="{:url('category/delete', ['id'=>$item['category_id']])}">删除</a>
+                    </td>
+                </tr>
+            </volist>
+        </table>
+    </div>
+</empty>
